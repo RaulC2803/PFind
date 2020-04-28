@@ -2,4 +2,4 @@
 Página web - PFind
 
 ### Backend
-Diseñado con sptring
+Diseñado con spring
