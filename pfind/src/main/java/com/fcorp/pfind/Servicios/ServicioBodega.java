@@ -16,11 +16,13 @@ import com.fcorp.pfind.entity.Producto;
 public class ServicioBodega {
 	@Autowired
 	private Bodegarepositorio bodegaRepositorio;
+
+	@Autowired
 	private Bodega_Productorepositorio bodega_productoRepositorio;
 	
 	public Bodega obtenerBodega(Long codigo)throws Exception {
 		Bodega b;
-		b = bodegaRepositorio.buscarBodega(codigo);
+		b = bodegaRepositorio.findById(codigo).get();
 		if(b == null) throw new Exception("La bodega no existe");
 		return b;
 	}
@@ -37,14 +39,18 @@ public class ServicioBodega {
 	}
 	
 	@Transactional(rollbackFor = Exception.class)
-	public Bodega_Producto registrarBodega_Producto(Bodega_Producto BPinput) {
-		return bodega_productoRepositorio.save(BPinput);
+	public Bodega_Producto registrarBodega_Producto(Bodega_Producto BPinput) throws Exception {
+		Bodega_Producto b = null;
+		b = BPinput;
+		if (b == null){ throw new Exception("No se pudo registrar");}
+		else{
+			return bodega_productoRepositorio.save(BPinput);
+		}
 	}
-	
 
 	public Bodega_Producto obtenerBodega_Producto(Bodega bodega, Producto producto) throws Exception{
-		Bodega_Producto bp;
-		bp = bodega_productoRepositorio.buscarBodega_Producto(bodega.getCodigo(),producto.getCodigo());
+		Bodega_Producto bp = null;
+		bp = bodega_productoRepositorio.buscarBodegaProducto(producto.getCodigo(),bodega.getCodigo());
 		if(bp == null) throw new Exception("No se encontró relación");
 		return bp;
 	}

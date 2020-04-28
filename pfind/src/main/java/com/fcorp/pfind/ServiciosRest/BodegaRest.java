@@ -23,8 +23,10 @@ import com.fcorp.pfind.entity.Producto;
 public class BodegaRest {
 	@Autowired
 	private ServicioBodega servicioBodega;
+
 	@Autowired
 	private ServicioProducto servicioProducto;
+
 	@GetMapping("/{codigo}")
 	public Bodega obtenerBodega(@PathVariable(value ="codigo") Long codigo) {
 		Bodega b = null;
@@ -45,9 +47,9 @@ public class BodegaRest {
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no se puede registrar producto");
 		}
-		return b;
+		return bodega;
 	}
-	
+
 	@PutMapping("/actualizar")
 	public Bodega actualizarBodega(@RequestBody Bodega bodega) {
 		Bodega b;
@@ -56,7 +58,7 @@ public class BodegaRest {
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se puede encontrar");
 		}
-		return b;		
+		return b;
 	}	
 	
 	
@@ -65,20 +67,16 @@ public class BodegaRest {
 	                                                     @PathVariable(value = "bID") Long bid,
 	                                                     @PathVariable(value = "pID") Long pid) {
 	        try {
-	        	
 	            Bodega b = servicioBodega.obtenerBodega(bid);
 	            Producto p = servicioProducto.obtenerProducto(pid);
 	            Bodega_Producto bp = BPinput;
 	            bp.setBodega(b);
 	            bp.setProducto(p);
-	           // bp.setBodega(BPinput.getBodega());
-	          //  bp.setListado(BPinput.getListado());
-	          //  bp.setProducto(BPinput.getProducto());
-	            return bp;
-	           //return servicioBodega.registrarBodega_Producto(bp);
-	           
+	            bp.setBodega(BPinput.getBodega());
+	          	bp.setProducto(BPinput.getProducto());
+	          	return servicioBodega.registrarBodega_Producto(bp);
 	        } catch(Exception e) {
-	            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+	        	throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 	        }
 	    }
 	

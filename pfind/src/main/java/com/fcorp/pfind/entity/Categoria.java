@@ -1,5 +1,7 @@
 package com.fcorp.pfind.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -17,6 +19,7 @@ public class Categoria implements Serializable {
     private List<Bodega_Categoria> bodega_categoria;
 
     @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Producto> producto;
 
     public Long getCodigo() {
