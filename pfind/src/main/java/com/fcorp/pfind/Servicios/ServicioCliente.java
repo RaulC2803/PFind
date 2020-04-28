@@ -11,12 +11,19 @@ public class ServicioCliente {
     @Autowired
     private Clienterepositorio clienterepositorio;
 
+    public Cliente buscarCliente(Long id){
+        return clienterepositorio.findById(id).get();
+    }
+
     public Cliente registrarCliente(Cliente cliente) throws Exception {
         Cliente c = null;
         c = cliente;
         if (c == null){
             throw new Exception("No se pudo registrar");
         }
-        else return clienterepositorio.save(c);
+        else {
+            c.setModalidad("cliente");
+            return clienterepositorio.save(c);
+        }
     }
 }

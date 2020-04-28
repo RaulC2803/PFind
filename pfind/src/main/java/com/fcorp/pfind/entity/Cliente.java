@@ -12,6 +12,7 @@ public class Cliente extends Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
+    private String nombre;
     private String apellido;
     @Column(nullable = false)
     private int edad;
@@ -45,6 +46,14 @@ public class Cliente extends Usuario implements Serializable {
 
     public void setListado(Listado listado) {
         this.listado = listado;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getApellido() {
