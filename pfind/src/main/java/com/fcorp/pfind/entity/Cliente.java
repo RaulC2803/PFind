@@ -20,6 +20,9 @@ public class Cliente extends Usuario implements Serializable {
     @OneToMany(mappedBy = "Cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Listado> listado;
 
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Reseña> reseñas;
+
     public int getEdad() {
         return edad;
     }
@@ -50,5 +53,13 @@ public class Cliente extends Usuario implements Serializable {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+
+    public List<Reseña> getReseñas() {
+        return reseñas;
+    }
+
+    public void setReseñas(List<Reseña> reseñas) {
+        this.reseñas = reseñas;
     }
 }

@@ -21,10 +21,10 @@ public class Bodega extends Usuario implements Serializable {
     private String agencia_bancaria;
 
     @OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Categoria> categorias;
+    private List<Bodega_Categoria> bodega_categoria;
 
     @OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Producto> productos;
+    private List<Bodega_Producto> productos;
 
     @OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Reseña> reseña;
@@ -69,19 +69,19 @@ public class Bodega extends Usuario implements Serializable {
         this.agencia_bancaria = agencia_bancaria;
     }
 
-    public List<Categoria> getCategorias() {
-        return categorias;
+    public List<Bodega_Categoria> getBodega_categoria() {
+        return bodega_categoria;
     }
 
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
+    public void setBodega_categoria(List<Bodega_Categoria> bodega_categoria) {
+        this.bodega_categoria = bodega_categoria;
     }
 
-    public List<Producto> getProductos() {
+    public List<Bodega_Producto> getProductos() {
         return productos;
     }
 
-    public void setProductos(List<Producto> productos) {
+    public void setProductos(List<Bodega_Producto> productos) {
         this.productos = productos;
     }
 

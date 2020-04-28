@@ -1,9 +1,5 @@
 package com.fcorp.pfind.entity;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "Usuario")
 public class Usuario {
 
     private String correo;
