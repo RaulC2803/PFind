@@ -17,8 +17,8 @@ public class Cliente extends Usuario implements Serializable {
     private int edad;
     private String distrito;
 
-    @OneToMany(mappedBy = "Cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<Listado> listado;
+    @OneToOne(mappedBy = "cliente")
+    Listado listado;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Reseña> reseñas;
@@ -39,11 +39,11 @@ public class Cliente extends Usuario implements Serializable {
         this.distrito = distrito;
     }
 
-    public List<Listado> getListado() {
+    public Listado getListado() {
         return listado;
     }
 
-    public void setListado(List<Listado> listado) {
+    public void setListado(Listado listado) {
         this.listado = listado;
     }
 

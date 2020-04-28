@@ -13,6 +13,7 @@ public class Producto implements Serializable {
     private String nombre;
 
     @ManyToOne()
+    @JoinColumn(name = "Categoria_Id")
     private Categoria categoria;
 
     @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

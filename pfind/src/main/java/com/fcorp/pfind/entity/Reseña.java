@@ -17,9 +17,11 @@ public class Reseña {
     private int calificacion;
 
     @ManyToOne()
+    @JoinColumn(name = "Cliente_Id")
     private Cliente cliente;
 
     @ManyToOne()
+    @JoinColumn(name = "Bodega_Id")
     private Bodega bodega;
 
     public Long getCodigo() {

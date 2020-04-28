@@ -12,8 +12,8 @@ public class Listado implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @OneToOne(mappedBy = "listado")
-    @Column(name = "cliente_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "Cliente_Id")
     private Cliente cliente;
 
     private int cantidad;

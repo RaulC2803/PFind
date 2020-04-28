@@ -1,8 +1,5 @@
 package com.fcorp.pfind.entity;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import sun.security.util.Length;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
