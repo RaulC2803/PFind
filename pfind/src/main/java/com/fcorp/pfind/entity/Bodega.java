@@ -4,9 +4,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import sun.security.util.Length;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
-public class Bodega extends Usuario{
+@Entity
+@Table(name = "Bodega")
+public class Bodega extends Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
@@ -18,15 +21,12 @@ public class Bodega extends Usuario{
     private String agencia_bancaria;
 
     @OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Column(name = "categoria_id")
     private List<Categoria> categorias;
 
     @OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Column(name = "productos_id")
     private List<Producto> productos;
 
     @OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Column(name = "reseñas_id")
     private List<Reseña> reseña;
 
     public String getRuc() {
@@ -59,32 +59,6 @@ public class Bodega extends Usuario{
 
     public void setAforo(int aforo) {
         this.aforo = aforo;
-    }
-
-    public List<Categorias> getCate_productos() {
-        return cate_productos;
-    }
-
-    public void setCate_productos(List<Categorias> cate_productos) {
-        this.cate_productos = cate_productos;
-    }
-
-    public boolean isAgente_bancario() {
-        return agente_bancario;
-    }
-
-    public void setAgente_bancario(boolean agente_bancario) {
-        this.agente_bancario = agente_bancario;
-    }
-
-    @Override
-    public Long getCodigo() {
-        return codigo;
-    }
-
-    @Override
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
     }
 
     public String getAgencia_bancaria() {

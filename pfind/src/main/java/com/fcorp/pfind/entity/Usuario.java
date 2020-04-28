@@ -10,14 +10,6 @@ public class Usuario {
     private String contraseña;
     private String modalidad;
 
-    public Long getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(Long codigo) {
-        this.codigo = codigo;
-    }
-
     public String getCorreo() {
         return correo;
     }
