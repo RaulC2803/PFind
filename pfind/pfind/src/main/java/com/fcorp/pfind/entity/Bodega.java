@@ -7,8 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "Bodega")
 public class Bodega extends Usuario implements Serializable {
-	private static final long serialVersionUID = 1L;
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
     @Column(length = 11)
@@ -18,6 +17,13 @@ public class Bodega extends Usuario implements Serializable {
     private int aforo;
     private String agencia_bancaria;
 
+    public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
 
 	@OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Bodega_Categoria> bodega_categoria;
@@ -27,14 +33,6 @@ public class Bodega extends Usuario implements Serializable {
 
     @OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Reseña> reseña;
-    
-    public Long getCodigo() {
-    	return codigo;
-    }
-    
-    public void setCodigo(Long codigo) {
-    	this.codigo = codigo;
-    }
 
     public String getRuc() {
         return ruc;

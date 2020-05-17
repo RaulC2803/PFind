@@ -1,5 +1,7 @@
 package com.fcorp.pfind.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -7,8 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "Cliente")
 public class Cliente extends Usuario implements Serializable {
-	private static final long serialVersionUID = 1L;
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
     private String nombre;

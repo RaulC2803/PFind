@@ -7,9 +7,8 @@ import java.util.List;
 @Entity
 @Table(name = "Listado")
 public class Listado implements Serializable {
-	private static final long serialVersionUID = 1L;
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 

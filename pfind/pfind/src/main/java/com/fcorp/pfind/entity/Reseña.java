@@ -1,16 +1,14 @@
 package com.fcorp.pfind.entity;
 
-import java.io.Serializable;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Reseña")
-public class Reseña implements Serializable{
-	
-	private static final long serialVersionUID = 1L;
-	@Id
+public class Reseña {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
     @Column(length = 100)

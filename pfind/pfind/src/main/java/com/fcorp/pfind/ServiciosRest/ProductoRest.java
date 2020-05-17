@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fcorp.pfind.Repositorio.Productorepositorio;
 import com.fcorp.pfind.Servicios.ServicioProducto;
 import com.fcorp.pfind.entity.Producto;
 
