@@ -6,18 +6,43 @@ import java.util.List;
 
 @Entity
 @Table(name = "Cliente")
-public class Cliente extends Usuario implements Serializable {
-	private static final long serialVersionUID = 1L;
-	@Id
+public class Cliente implements Serializable {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
     private String nombre;
     private String apellido;
+    private String email;
+    private String password;
     @Column(nullable = false)
     private int edad;
     private String distrito;
 
-    @OneToOne(mappedBy = "cliente")
+    public Long getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@OneToOne(mappedBy = "cliente")
     Listado listado;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
