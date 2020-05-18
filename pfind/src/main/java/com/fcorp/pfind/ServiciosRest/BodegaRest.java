@@ -1,6 +1,5 @@
 package com.fcorp.pfind.ServiciosRest;
 
-import com.fcorp.pfind.entity.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +16,6 @@ import com.fcorp.pfind.Servicios.ServicioProducto;
 import com.fcorp.pfind.entity.Bodega;
 import com.fcorp.pfind.entity.Bodega_Producto;
 import com.fcorp.pfind.entity.Producto;
-
-import java.util.List;
 
 
 @RestController
@@ -65,18 +62,17 @@ public class BodegaRest {
 	}	
 	
 	
-	 @PostMapping("/producto/registrar/{bID}/{pID}")
-	    public Bodega_Producto registrarBodega_Producto(@RequestBody Bodega_Producto BPinput,
+	 @PostMapping("/producto/registrar/{bID}/{pID}/{precio}")
+	    public Bodega_Producto registrarBodega_Producto(@PathVariable(value = "precio") Double precio,
 	                                                     @PathVariable(value = "bID") Long bid,
 	                                                     @PathVariable(value = "pID") Long pid) {
 	        try {
 	            Bodega b = servicioBodega.obtenerBodega(bid);
 	            Producto p = servicioProducto.obtenerProducto(pid);
-	            Bodega_Producto bp = BPinput;
+	            Bodega_Producto  bp = new Bodega_Producto();
 	            bp.setBodega(b);
 	            bp.setProducto(p);
-	            bp.setBodega(BPinput.getBodega());
-	          	bp.setProducto(BPinput.getProducto());
+	            bp.setPrecio(precio);
 	          	return servicioBodega.registrarBodega_Producto(bp);
 	        } catch(Exception e) {
 	        	throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());

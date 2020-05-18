@@ -15,4 +15,13 @@ public class ServicioCategoria {
     public List<Categoria> obtenerCategoria(){
         return categoriarepositorio.findAll();
     }
+    
+    public Categoria obtenerPorId(Long codigo) throws Exception { 
+    	return categoriarepositorio.findById(codigo).get();
+    }
+    
+    public List<Categoria> obtenerPorNombre(String nombre) {
+    	return categoriarepositorio.buscarPorNombre(nombre);
+    }
+    
 }

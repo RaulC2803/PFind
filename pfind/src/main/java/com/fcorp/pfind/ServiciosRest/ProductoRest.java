@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fcorp.pfind.Servicios.ServicioCategoria;
 import com.fcorp.pfind.Servicios.ServicioProducto;
+import com.fcorp.pfind.entity.Categoria;
 import com.fcorp.pfind.entity.Producto;
 
 import java.util.List;
@@ -20,6 +22,8 @@ import java.util.List;
 public class ProductoRest {
     @Autowired
     private ServicioProducto servicioProducto;
+    @Autowired
+    private ServicioCategoria servicioCategoria;
     
     @GetMapping("/buscar/{pid}")
     public Producto buscarProducto(@PathVariable(value = "pid") Long pid) {
@@ -30,10 +34,11 @@ public class ProductoRest {
         }
     }
     
-    @PostMapping("/registrar")
-    public Producto registrarProducto(@RequestBody Producto p) {
+    @PostMapping("/registrar/{cid}")
+    public Producto registrarProducto(@RequestBody Producto p, @PathVariable(value = "cid") Long cid) {
         try {
-            return servicioProducto.registrarProducto(p);
+        	p.setCategoria(servicioCategoria.obtenerPorId(cid));
+        	return servicioProducto.registrarProducto(p);
         } catch(Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
