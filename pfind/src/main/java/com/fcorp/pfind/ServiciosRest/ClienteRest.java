@@ -24,8 +24,8 @@ public class ClienteRest {
         c.setApellido(new_cliente.getApellido());
         c.setDistrito(new_cliente.getDistrito());
         c.setEdad(new_cliente.getEdad());
-        c.setContraseña(new_cliente.getContraseña());
-        c.setCorreo(new_cliente.getCorreo());
+        c.setPassword(new_cliente.getPassword());
+        c.setEmail(new_cliente.getEmail());
         return servicioCliente.registrarCliente(c);
     }
 }

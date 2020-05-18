@@ -4,24 +4,24 @@ import java.io.Serializable;
 
 public class Usuario implements Serializable{
 	private static final long serialVersionUID = 1L;
-	private String correo;
-    private String contraseña;
+	private String email;
+    private String password;
     private String modalidad;
 
-    public String getCorreo() {
-        return correo;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getPassword() {
+        return password;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getModalidad() {

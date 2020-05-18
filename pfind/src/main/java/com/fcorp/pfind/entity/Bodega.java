@@ -14,10 +14,10 @@ public class Bodega extends Usuario implements Serializable {
     @Column(length = 11)
     private String ruc;
     private String nombre;
+    private String jefe;
     private String direccion;
     private int aforo;
     private String agencia_bancaria;
-
 
 	@OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Bodega_Categoria> bodega_categoria;
@@ -42,6 +42,14 @@ public class Bodega extends Usuario implements Serializable {
 
     public void setRuc(String ruc) {
         this.ruc = ruc;
+    }
+
+    public String getJefe() {
+        return jefe;
+    }
+
+    public void setJefe(String jefe) {
+        this.jefe = jefe;
     }
 
     public String getNombre() {

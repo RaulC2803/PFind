@@ -1,5 +1,6 @@
 package com.fcorp.pfind.ServiciosRest;
 
+import com.fcorp.pfind.entity.Categoria;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,8 @@ import com.fcorp.pfind.Servicios.ServicioProducto;
 import com.fcorp.pfind.entity.Bodega;
 import com.fcorp.pfind.entity.Bodega_Producto;
 import com.fcorp.pfind.entity.Producto;
+
+import java.util.List;
 
 
 @RestController
