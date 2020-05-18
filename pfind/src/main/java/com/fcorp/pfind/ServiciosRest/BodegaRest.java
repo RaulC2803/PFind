@@ -1,5 +1,7 @@
 package com.fcorp.pfind.ServiciosRest;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -91,6 +93,24 @@ public class BodegaRest {
 	        }
 	    }
 	 
+	 @GetMapping("/producto/buscarBPCtg/{cid}")
+	 public List<Bodega_Producto> buscarBPporCategoria(@PathVariable(value = "cid") Long cid){
+		 return servicioBodega.obtenerBPporCategoria(cid);
+	 }
+	 @GetMapping("/producto/buscarBPCtg")
+	 public List<Bodega_Producto> buscarBPCtg_ifnull(){
+		 return ListarBPs();
+	 } 
+
+
+	 @GetMapping("/producto/buscarBPn/{nombre}")
+	 public List<Bodega_Producto> buscarBPporNombre(@PathVariable(value = "nombre") String nombre){
+		 return servicioBodega.obtenerBPporNombre(nombre);
+	 }
+	 @GetMapping("/producto/buscarBPn")
+	 public List<Bodega_Producto> ListarBPs(){
+		 return servicioBodega.obtenerBPporNombre("");
+	 }
 	 
 	  @PutMapping("/producto/actualizar/{bID}/{pID}")
 	    public Bodega_Producto actualizarBodega_Producto(@RequestBody Bodega_Producto BPinput,

@@ -1,5 +1,7 @@
 package com.fcorp.pfind.Servicios;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,6 +55,12 @@ public class ServicioBodega {
 		return bp;
 	}
 	
+	public List<Bodega_Producto> obtenerBPporCategoria(Long cid) {
+		return bodega_productoRepositorio.buscarPorCategoria(cid);
+	}
+	public List<Bodega_Producto> obtenerBPporNombre(String nombre) {
+		return bodega_productoRepositorio.buscarPorNombre(nombre);
+	}
 	@Transactional(rollbackFor = Exception.class)
     public Bodega_Producto actualizarBodega_Producto(Bodega_Producto BPinput) throws Exception {
         Bodega_Producto bp = bodega_productoRepositorio.findById(BPinput.getCodigo()).orElseThrow(()-> new Exception("No se encontró bodega_producto"));

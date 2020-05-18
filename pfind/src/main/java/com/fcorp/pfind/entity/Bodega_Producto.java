@@ -18,7 +18,6 @@ public class Bodega_Producto {
 
     @ManyToOne()
     @JoinColumn(name = "Bodega_Id")
-    @JsonIgnore
     private Bodega bodega;
 
     @ManyToOne()
