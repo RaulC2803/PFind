@@ -37,6 +37,13 @@ public class ProductoRest {
         }
     }
     
-
+    @GetMapping("/listar/{nombre}")
+    public List<Producto> buscarPorNombre(@PathVariable(value = "nombre") String nombre){
+    	return servicioProducto.buscarProductosPorNombre(nombre);
+    }
+    @GetMapping("/listar")
+    public List<Producto> ListarProductos(){
+    	return servicioProducto.obtenerProductos();
+    }
     
 }
