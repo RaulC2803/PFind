@@ -15,7 +15,7 @@ public class Cliente implements Serializable {
     private String email;
     private String password;
     @Column(nullable = false)
-    private int edad;
+    private Long edad;
     private String distrito;
 
     public Long getCodigo() {
@@ -48,11 +48,11 @@ public class Cliente implements Serializable {
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Reseña> reseñas;
 
-    public int getEdad() {
+    public Long getEdad() {
         return edad;
     }
 
-    public void setEdad(int edad) {
+    public void setEdad(Long edad) {
         this.edad = edad;
     }
 
