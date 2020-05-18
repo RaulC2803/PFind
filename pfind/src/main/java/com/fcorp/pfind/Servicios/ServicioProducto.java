@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fcorp.pfind.Repositorio.Productorepositorio;
 import com.fcorp.pfind.entity.Producto;
 
+import java.util.List;
+
 @Service
 public class ServicioProducto {
     @Autowired

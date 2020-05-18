@@ -13,6 +13,8 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fcorp.pfind.Servicios.ServicioProducto;
 import com.fcorp.pfind.entity.Producto;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/producto")
 public class ProductoRest {
