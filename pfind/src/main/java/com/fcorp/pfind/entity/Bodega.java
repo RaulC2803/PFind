@@ -16,8 +16,11 @@ public class Bodega extends Usuario implements Serializable {
     private String nombre;
     private String jefe;
     private String direccion;
+    private String email;
+    private String password;
     private int aforo;
     private String agencia_bancaria;
+
 
 	@OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Bodega_Categoria> bodega_categoria;
@@ -27,6 +30,22 @@ public class Bodega extends Usuario implements Serializable {
 
     @OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Reseña> reseña;
+    
+    public String getEmail() {
+    	return email;
+    }
+    
+    public void setEmail(String email) {
+    	this.email = email;
+    }
+    
+    public String getPassword() {
+    	return password;
+    }
+    
+    public void setPassword(String password) {
+    	this.password = password;
+    }
     
     public Long getCodigo() {
     	return codigo;
