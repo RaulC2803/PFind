@@ -27,4 +27,8 @@ public class ServicioProducto {
     public List<Producto> obtenerProductos(){
     	return productoRepositorio.findAll();
     }
+    
+    public List<Producto> obtenerPorCategoria(Long cid){
+    	return productoRepositorio.buscarPorCategoria(cid);
+    }
 }

@@ -34,6 +34,7 @@ public class ProductoRest {
         }
     }
     
+    
     @PostMapping("/registrar/{cid}")
     public Producto registrarProducto(@RequestBody Producto p, @PathVariable(value = "cid") Long cid) {
         try {
@@ -44,6 +45,10 @@ public class ProductoRest {
         }
     }
     
+    @GetMapping("/buscarCtg/{cid}")
+    public List<Producto> buscarPorCategoria(@PathVariable(value = "cid") Long cid){
+    	return servicioProducto.obtenerPorCategoria(cid);
+    }
     @GetMapping("/listar/{nombre}")
     public List<Producto> buscarPorNombre(@PathVariable(value = "nombre") String nombre){
     	return servicioProducto.buscarProductosPorNombre(nombre);
