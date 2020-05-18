@@ -19,5 +19,10 @@ public class ServicioProducto {
     public Producto registrarProducto(Producto p) {
         return productoRepositorio.save(p);
     }
-    
+    public List<Producto> buscarProductosPorNombre(String nombre){
+    	return productoRepositorio.buscarPorNombre(nombre);
+    }
+    public List<Producto> obtenerProductos(){
+    	return productoRepositorio.findAll();
+    }
 }
