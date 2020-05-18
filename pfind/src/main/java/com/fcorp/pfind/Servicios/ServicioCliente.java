@@ -22,7 +22,6 @@ public class ServicioCliente {
             throw new Exception("No se pudo registrar");
         }
         else {
-            c.setModalidad("cliente");
             return clienterepositorio.save(c);
         }
     }
