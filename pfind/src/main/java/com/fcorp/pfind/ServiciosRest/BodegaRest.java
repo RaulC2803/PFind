@@ -112,6 +112,15 @@ public class BodegaRest {
 		 return servicioBodega.obtenerBPporNombre("");
 	 }
 	 
+	 @GetMapping("/producto/buscarBPCtgNombre/{cid}/{nombre}")
+	 public List<Bodega_Producto> buscarBPporNombreYCategoria(@PathVariable(value = "cid") Long cid, @PathVariable(value = "nombre") String nombre){
+		 return servicioBodega.obtenerBPporNombreYCategoria(nombre, cid);
+	 }
+	 @GetMapping("/producto/buscarBPCtgNombre/{cid}")
+	 public List<Bodega_Producto> buscarBPporNombreYCategoria_ifNnull(@PathVariable(value = "cid") Long cid){
+		 return buscarBPporCategoria(cid);
+	 }
+	 
 	  @PutMapping("/producto/actualizar/{bID}/{pID}")
 	    public Bodega_Producto actualizarBodega_Producto(@RequestBody Bodega_Producto BPinput,
 	                                                     @PathVariable(value = "bID") Long bid,

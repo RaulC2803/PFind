@@ -18,4 +18,7 @@ public interface Bodega_Productorepositorio extends JpaRepository<Bodega_Product
     
     @Query("select bp from Bodega_Producto bp where bp.producto.nombre like %?1%")
     List<Bodega_Producto> buscarPorNombre(String nombre);
+    
+    @Query("select bp from Bodega_Producto bp where bp.producto.nombre like %:nombre% and bp.producto.categoria.codigo = :cid")
+    List<Bodega_Producto> buscarPorNombreYCategoria(@Param("nombre")String nombre, @Param("cid") Long cid);
 }

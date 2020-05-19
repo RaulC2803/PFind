@@ -61,6 +61,10 @@ public class ServicioBodega {
 	public List<Bodega_Producto> obtenerBPporNombre(String nombre) {
 		return bodega_productoRepositorio.buscarPorNombre(nombre);
 	}
+	
+	public List<Bodega_Producto> obtenerBPporNombreYCategoria(String nombre, Long cid){
+		return bodega_productoRepositorio.buscarPorNombreYCategoria(nombre, cid);
+	}
 	@Transactional(rollbackFor = Exception.class)
     public Bodega_Producto actualizarBodega_Producto(Bodega_Producto BPinput) throws Exception {
         Bodega_Producto bp = bodega_productoRepositorio.findById(BPinput.getCodigo()).orElseThrow(()-> new Exception("No se encontró bodega_producto"));
