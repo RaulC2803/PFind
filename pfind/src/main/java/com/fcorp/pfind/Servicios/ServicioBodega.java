@@ -61,9 +61,16 @@ public class ServicioBodega {
 	public List<Bodega_Producto> obtenerBPporNombre(String nombre) {
 		return bodega_productoRepositorio.buscarPorNombre(nombre);
 	}
+	public List<Bodega_Producto> obtenerBPporNombreYMarca(String nombre, String marca) {
+		return bodega_productoRepositorio.buscarPorNombreYMarca(nombre, marca);
+	}
 	
 	public List<Bodega_Producto> obtenerBPporNombreYCategoria(String nombre, Long cid){
 		return bodega_productoRepositorio.buscarPorNombreYCategoria(nombre, cid);
+	}
+	
+	public List<Bodega_Producto> obtenerBPporMaxMin(Double pmin, Double pmax){
+		return bodega_productoRepositorio.buscarPorRango(pmin, pmax);
 	}
 	@Transactional(rollbackFor = Exception.class)
     public Bodega_Producto actualizarBodega_Producto(Bodega_Producto BPinput) throws Exception {

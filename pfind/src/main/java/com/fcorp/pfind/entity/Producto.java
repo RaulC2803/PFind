@@ -14,14 +14,33 @@ public class Producto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
     private String nombre;
+    private String marca;
+    private String imagenprin;
 
-    @ManyToOne()
+
+	@ManyToOne()
     @JoinColumn(name = "Categoria_Id")
     private Categoria categoria;
 
     @OneToMany(mappedBy = "producto", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
     List<Bodega_Producto> bodega_productos;
+
+    public String getMarca() {
+    	return marca;
+    }
+    
+    public void setMarca(String marca) {
+    	this.marca = marca;
+    }
+    
+    public String getImagenprin() {
+    	return imagenprin;
+    }
+    
+    public void setImagenprin(String imagenprin) {
+    	this.imagenprin = imagenprin;
+    }
 
     public Long getCodigo() {
         return codigo;
