@@ -61,8 +61,8 @@ public class ServicioBodega {
 	public List<Bodega_Producto> obtenerBPporNombre(String nombre) {
 		return bodega_productoRepositorio.buscarPorNombre(nombre);
 	}
-	public List<Bodega_Producto> obtenerBPporNombreYMarca(String nombre, String marca) {
-		return bodega_productoRepositorio.buscarPorNombreYMarca(nombre, marca);
+	public List<Bodega_Producto> obtenerBPporNombreMarcaYBodega(String nombre, String marca, String bodega) {
+		return bodega_productoRepositorio.buscarPorNombreMarcaYBodega(nombre, marca, bodega);
 	}
 	
 	public List<Bodega_Producto> obtenerBPporNombreYCategoria(String nombre, Long cid){
