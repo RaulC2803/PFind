@@ -133,10 +133,11 @@ public class BodegaRest {
      }
      
      
-     @GetMapping("/busqueda/cat_id={cid}/nom={nombre}/marc={marca}/min={pmin}/max={pmax}")
+     @GetMapping("/producto/busqueda/cat_id={cid}/nom={nombre}/marc={marca}/bod={bodega}/min={pmin}/max={pmax}")
      public List<Bodega_Producto> test(@PathVariable(value = "cid") Long cid, 
                          @PathVariable(value = "nombre") String nombre,
                          @PathVariable(value = "marca") String marca,
+                         @PathVariable(value = "bodega") String bodega,
                          @PathVariable(value = "pmin") Double pmin,
                          @PathVariable(value = "pmax") Double pmax){
     	 
@@ -145,8 +146,8 @@ public class BodegaRest {
          List<Bodega_Producto> lBase;
          if (nombre.length() == 0) nombre = "";
          if (marca.length() == 0) marca = "";
-        
-         lBase = servicioBodega.obtenerBPporNombreYMarca(nombre, marca);
+         if (bodega.length() == 0) bodega = "";
+         lBase = servicioBodega.obtenerBPporNombreMarcaYBodega(nombre, marca, bodega);
          if (cid != null) {
              lCat = servicioBodega.obtenerBPporCategoria(cid);
              lBase = inters(lCat,lBase);
