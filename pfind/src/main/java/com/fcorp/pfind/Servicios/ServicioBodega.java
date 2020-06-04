@@ -77,7 +77,6 @@ public class ServicioBodega {
         Bodega_Producto bp = bodega_productoRepositorio.findById(BPinput.getCodigo()).orElseThrow(()-> new Exception("No se encontró bodega_producto"));
         bp.setCodigo(BPinput.getCodigo());
         bp.setBodega(BPinput.getBodega());
-        bp.setListado(BPinput.getListado());
         bp.setProducto(BPinput.getProducto());
         return bodega_productoRepositorio.save(bp);
     }

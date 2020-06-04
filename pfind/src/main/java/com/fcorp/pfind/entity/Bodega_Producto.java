@@ -19,10 +19,6 @@ public class Bodega_Producto {
     @ManyToOne()
     @JoinColumn(name = "Bodega_Id")
     private Bodega bodega;
-
-    @ManyToOne()
-    @JoinColumn(name = "Listado_Id")
-    private Listado listado;
     
 
     public Long getCodigo() {
@@ -31,14 +27,6 @@ public class Bodega_Producto {
 
     public void setCodigo(Long codigo) {
         this.codigo = codigo;
-    }
-
-    public Listado getListado() {
-        return listado;
-    }
-
-    public void setListado(Listado listado) {
-        this.listado = listado;
     }
 
     public Producto getProducto() {

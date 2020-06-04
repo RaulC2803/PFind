@@ -1,5 +1,7 @@
 package com.fcorp.pfind.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -13,16 +15,16 @@ public class Listado implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "Cliente_Id")
+    @JsonIgnore
     private Cliente cliente;
 
     private int cantidad;
     private double precio_total;
 
-    @OneToMany(mappedBy = "listado", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @Column(name = "producto_id")
-    private List<Bodega_Producto> bodega_producto;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Bodega_Producto bodega_producto;
 
     public Long getCodigo() {
         return codigo;
@@ -48,11 +50,11 @@ public class Listado implements Serializable {
         this.cantidad = cantidad;
     }
 
-    public List<Bodega_Producto> getBodega_producto() {
+    public Bodega_Producto getBodega_producto() {
         return bodega_producto;
     }
 
-    public void setBodega_producto(List<Bodega_Producto> bodega_producto) {
+    public void setBodega_producto(Bodega_Producto bodega_producto) {
         this.bodega_producto = bodega_producto;
     }
 

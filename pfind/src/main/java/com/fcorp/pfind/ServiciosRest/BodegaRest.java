@@ -187,7 +187,6 @@ public class BodegaRest {
 	            Bodega_Producto bp = servicioBodega.obtenerBodega_Producto(b, p);
 	            bp.setCodigo(BPinput.getCodigo());
 	            bp.setBodega(BPinput.getBodega());
-	            bp.setListado(BPinput.getListado());
 	            bp.setProducto(BPinput.getProducto());
 	            return servicioBodega.actualizarBodega_Producto(bp);
 	        } catch(Exception e) {

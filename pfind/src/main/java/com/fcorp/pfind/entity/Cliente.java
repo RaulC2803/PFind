@@ -18,6 +18,14 @@ public class Cliente implements Serializable {
     @Column(nullable = false)
     private Long edad;
     private String distrito;
+    private Double precio_lista;
+    private int cantidad;
+
+    public Cliente() {
+        super();
+        this.precio_lista = 0.0;
+        this.cantidad = 0;
+    }
 
     public Long getCodigo() {
 		return codigo;
@@ -43,8 +51,24 @@ public class Cliente implements Serializable {
 		this.password = password;
 	}
 
-	@OneToOne(mappedBy = "cliente")
-    Listado listado;
+    public Double getPrecio_lista() {
+        return precio_lista;
+    }
+
+    public void setPrecio_lista(Double precio_lista) {
+        this.precio_lista = precio_lista;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    List<Listado> listado;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Reseña> reseñas;
@@ -65,11 +89,11 @@ public class Cliente implements Serializable {
         this.distrito = distrito;
     }
 
-    public Listado getListado() {
+    public List<Listado> getListado() {
         return listado;
     }
 
-    public void setListado(Listado listado) {
+    public void setListado(List<Listado> listado) {
         this.listado = listado;
     }
 
