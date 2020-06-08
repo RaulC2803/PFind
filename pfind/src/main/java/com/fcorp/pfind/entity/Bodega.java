@@ -2,6 +2,7 @@ package com.fcorp.pfind.entity;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.List;
@@ -25,6 +26,7 @@ public class Bodega extends Usuario implements Serializable {
 
 
 	@OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
     private List<Bodega_Categoria> bodega_categoria;
 
     @OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

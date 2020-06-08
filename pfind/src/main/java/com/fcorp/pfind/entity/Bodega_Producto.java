@@ -10,6 +10,8 @@ public class Bodega_Producto {
     private Long codigo;
 
     private Double precio;
+    
+    private String Descripcion;
     @ManyToOne()
     @JoinColumn(name = "Producto_Id")
     private Producto producto;
@@ -18,6 +20,13 @@ public class Bodega_Producto {
     @JoinColumn(name = "Bodega_Id")
     private Bodega bodega;
     
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        Descripcion = descripcion;
+    }
 
     public Long getCodigo() {
         return codigo;
