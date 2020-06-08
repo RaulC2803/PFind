@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface Bodega_Productorepositorio extends JpaRepository<Bodega_Producto, Long> {
-    @Query("SELECT bp FROM Bodega_Producto bp WHERE bp.producto = :proid and bp.bodega = :bodeid")
+    @Query("SELECT bp FROM Bodega_Producto bp WHERE bp.producto.codigo = :proid and bp.bodega.codigo = :bodeid")
     Bodega_Producto buscarBodegaProducto(@Param("proid") Long Producto_Id,
                                          @Param("bodeid") Long Bodega_Id);
     
