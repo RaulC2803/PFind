@@ -2,8 +2,6 @@ package com.fcorp.pfind.entity;
 
 import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Table(name = "Bodega_Producto")
 public class Bodega_Producto {
@@ -19,8 +17,7 @@ public class Bodega_Producto {
     @ManyToOne()
     @JoinColumn(name = "Bodega_Id")
     private Bodega bodega;
-
-    private String Descripcion;
+    
 
     public Long getCodigo() {
         return codigo;
@@ -53,12 +50,4 @@ public class Bodega_Producto {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
-
-    public String getDescripcion() {
-        return Descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        Descripcion = descripcion;
-    }
 }

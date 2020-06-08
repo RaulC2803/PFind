@@ -12,7 +12,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fcorp.pfind.Servicios.ServicioCategoria;
 import com.fcorp.pfind.Servicios.ServicioProducto;
-import com.fcorp.pfind.entity.Categoria;
 import com.fcorp.pfind.entity.Producto;
 
 import java.util.List;

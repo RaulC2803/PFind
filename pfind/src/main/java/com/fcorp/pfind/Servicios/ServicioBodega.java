@@ -34,7 +34,7 @@ public class ServicioBodega {
 	
 	@Transactional(rollbackFor = Exception.class)
 	public Bodega actualizarBodega(Bodega bodega) throws Exception {
-		Bodega p = bodegaRepositorio.findById(bodega.getCodigo()).orElseThrow(() -> new Exception("No se encontró esa bodega"));
+		bodegaRepositorio.findById(bodega.getCodigo()).orElseThrow(() -> new Exception("No se encontró esa bodega"));
 		return bodegaRepositorio.save(bodega);
 	}
 	

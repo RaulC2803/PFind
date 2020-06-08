@@ -8,8 +8,6 @@ import com.fcorp.pfind.entity.Cliente;
 import com.fcorp.pfind.entity.Listado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
 import java.util.List;
 
 @Service

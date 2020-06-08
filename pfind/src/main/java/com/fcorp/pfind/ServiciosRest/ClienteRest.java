@@ -51,9 +51,4 @@ public class ClienteRest {
     public Bodega_Producto obtenerBodegaProducto(@PathVariable(value = "bp") Long bp){
         return servicioCliente.obtenerProductodeBodega(bp);
     }
-
-    @GetMapping("/costo/{id}")
-    public Double obtenerPrecio(@PathVariable(value = "id")Long id){
-        return servicioCliente.buscarCliente(id).getPrecio_lista();
-    }
 }
