@@ -26,6 +26,7 @@ public class Bodega extends Usuario implements Serializable {
 
 
 	@OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Bodega_Categoria> bodega_categoria;
 
     @OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
