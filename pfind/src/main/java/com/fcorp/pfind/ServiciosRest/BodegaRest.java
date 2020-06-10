@@ -81,28 +81,11 @@ public class BodegaRest {
 	        	throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 	        }
 	    }
-	
-	 @GetMapping("/producto/buscar/{bID}/{pID}")
-	    public Bodega_Producto buscarBodega_Producto(@PathVariable(value = "bID") Long bid, @PathVariable(value = "pID") Long pid) {
-	        try {
-	            Bodega b = servicioBodega.obtenerBodega(bid);
-	            Producto p = servicioProducto.obtenerProducto(pid);
-	            Bodega_Producto bp = servicioBodega.obtenerBodega_Producto(b, p);
-	            return bp;
-	        } catch(Exception e) {
-	            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No se encontro Bodega_Producto con los datos ingresados");
-	        }
-	    }
 	 
 	 @GetMapping("/producto/buscarBPCtg/{cid}")
 	 public List<Bodega_Producto> buscarBPporCategoria(@PathVariable(value = "cid") Long cid){
 		 return servicioBodega.obtenerBPporCategoria(cid);
 	 }
-	 @GetMapping("/producto/buscarBPCtg")
-	 public List<Bodega_Producto> buscarBPCtg_ifnull(){
-		 return ListarBPs();
-	 } 
-
 
 	 @GetMapping("/producto/buscarBPn/{nombre}")
 	 public List<Bodega_Producto> buscarBPporNombre(@PathVariable(value = "nombre") String nombre){
@@ -113,60 +96,6 @@ public class BodegaRest {
 		 return servicioBodega.obtenerBPporNombre("");
 	 }
 	 
-	 @GetMapping("/producto/buscarBPCtgNombre/{cid}/{nombre}")
-	 public List<Bodega_Producto> buscarBPporNombreYCategoria(@PathVariable(value = "cid") Long cid, @PathVariable(value = "nombre") String nombre){
-		 return servicioBodega.obtenerBPporNombreYCategoria(nombre, cid);
-	 }
-	 
-	 private List<Bodega_Producto> inters (List<Bodega_Producto> a, List<Bodega_Producto> b)
-     {
-         List<Bodega_Producto> f = new ArrayList<Bodega_Producto>();
-         for(int i = 0; i < a.size(); i++){
-             for(int j = 0; j < b.size(); j++) {
-                 if(a.get(i).getCodigo() == b.get(j).getCodigo()){
-                        f.add(a.get(i));
-                    }
-             }
-         }
-         
-         return f;
-     }
-     
-     
-     @GetMapping("/producto/busqueda/cat_id={cid}/nom={nombre}/marc={marca}/bod={bodega}/min={pmin}/max={pmax}")
-     public List<Bodega_Producto> test(@PathVariable(value = "cid") Long cid, 
-                         @PathVariable(value = "nombre") String nombre,
-                         @PathVariable(value = "marca") String marca,
-                         @PathVariable(value = "bodega") String bodega,
-                         @PathVariable(value = "pmin") Double pmin,
-                         @PathVariable(value = "pmax") Double pmax){
-    	 
-         List<Bodega_Producto> lCat;
-         List<Bodega_Producto> lMxmn;
-         List<Bodega_Producto> lBase;
-         if (nombre.length() == 0) nombre = "";
-         if (marca.length() == 0) marca = "";
-         if (bodega.length() == 0) bodega = "";
-         lBase = servicioBodega.obtenerBPporNombreMarcaYBodega(nombre, marca, bodega);
-         if (cid != null) {
-             lCat = servicioBodega.obtenerBPporCategoria(cid);
-             lBase = inters(lCat,lBase);
-         } 
-         if (pmin != null || pmax != null) {
-             if(pmin == null) {
-                 pmin = -1.0;
-             }
-             if(pmax == null) {
-                 pmax = 9999999999.99;
-             }
-             lMxmn = servicioBodega.obtenerBPporMaxMin(pmin,pmax);
-             lBase = inters(lMxmn,lBase);
-         }
-        
-         return lBase;
-         
-     }
-	 
 	 @GetMapping("/producto/Rango/p_min={pmin}/p_max={pmax}")
 	 public List<Bodega_Producto> buscarPorRangoPrecio(@PathVariable(value = "pmin") Double pmin, @PathVariable(value="pmax") Double pmax){
 		 return servicioBodega.obtenerBPporMaxMin(pmin, pmax);
@@ -176,21 +105,4 @@ public class BodegaRest {
 	 public List<Bodega_Producto> buscarBPporNombreYCategoria_ifNnull(@PathVariable(value = "cid") Long cid){
 		 return buscarBPporCategoria(cid);
 	 }
-	 
-	  @PutMapping("/producto/actualizar/{bID}/{pID}")
-	  public Bodega_Producto actualizarBodega_Producto(@RequestBody Bodega_Producto BPinput,
-	                                                     @PathVariable(value = "bID") Long bid,
-	                                                     @PathVariable(value = "pID") Long pid) {
-	        try {
-	            Bodega b = servicioBodega.obtenerBodega(bid);
-	            Producto p = servicioProducto.obtenerProducto(pid);
-	            Bodega_Producto bp = servicioBodega.obtenerBodega_Producto(b, p);
-	            bp.setCodigo(BPinput.getCodigo());
-	            bp.setBodega(BPinput.getBodega());
-	            bp.setProducto(BPinput.getProducto());
-	            return servicioBodega.actualizarBodega_Producto(bp);
-	        } catch(Exception e) {
-	            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
-	        }
-	    }
 }

@@ -19,6 +19,9 @@ public class ServicioBodega {
 
 	@Autowired
 	private Bodega_Productorepositorio bodega_productoRepositorio;
+
+	@Autowired
+	private Bodegarepositorio bodegarepositorio;
 	
 	public Bodega obtenerBodega(Long codigo)throws Exception {
 		Bodega b;
@@ -47,26 +50,11 @@ public class ServicioBodega {
 			return bodega_productoRepositorio.save(BPinput);
 		}
 	}
-
-	public Bodega_Producto obtenerBodega_Producto(Bodega bodega, Producto producto) throws Exception{
-		Bodega_Producto bp = null;
-		bp = bodega_productoRepositorio.buscarBodegaProducto(producto.getCodigo(),bodega.getCodigo());
-		if(bp == null) throw new Exception("No se encontró relación");
-		return bp;
-	}
-	
 	public List<Bodega_Producto> obtenerBPporCategoria(Long cid) {
 		return bodega_productoRepositorio.buscarPorCategoria(cid);
 	}
 	public List<Bodega_Producto> obtenerBPporNombre(String nombre) {
-		return bodega_productoRepositorio.buscarPorNombre(nombre);
-	}
-	public List<Bodega_Producto> obtenerBPporNombreMarcaYBodega(String nombre, String marca, String bodega) {
-		return bodega_productoRepositorio.buscarPorNombreMarcaYBodega(nombre, marca, bodega);
-	}
-	
-	public List<Bodega_Producto> obtenerBPporNombreYCategoria(String nombre, Long cid){
-		return bodega_productoRepositorio.buscarPorNombreYCategoria(nombre, cid);
+		return bodega_productoRepositorio.busquedaFinal(nombre);
 	}
 	
 	public List<Bodega_Producto> obtenerBPporMaxMin(Double pmin, Double pmax){
@@ -80,4 +68,8 @@ public class ServicioBodega {
         bp.setProducto(BPinput.getProducto());
         return bodega_productoRepositorio.save(bp);
     }
+
+    public List<Bodega> obtenerBodegas(){
+		return bodegaRepositorio.findAll();
+	}
 }

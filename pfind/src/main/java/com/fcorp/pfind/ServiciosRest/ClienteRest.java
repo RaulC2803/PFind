@@ -41,6 +41,14 @@ public class ClienteRest {
         return c;
     }
 
+    @DeleteMapping("/{id}/quitar/{lt}")
+    public List<Listado> quitarLista(@PathVariable(value = "id") Long id, @PathVariable(value = "lt") Long lt) throws Exception {
+        Cliente c = null;
+        servicioCliente.quitarLista(lt);
+        c = servicioCliente.buscarCliente(id);
+        return servicioCliente.listadoCliente(c);
+    }
+
     @GetMapping("/{id}/lista")
     public List<Listado> listaCliente(@PathVariable(value = "id") Long id) throws Exception {
         Cliente c = servicioCliente.buscarCliente(id);

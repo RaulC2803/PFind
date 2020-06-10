@@ -69,4 +69,8 @@ public class ServicioCliente {
     public Bodega_Producto obtenerProductodeBodega(Long id){
         return bodega_productorepositorio.findById(id).get();
     }
+
+    public void quitarLista(Long lt){
+        listadorepositorio.deleteById(lt);
+    }
 }
