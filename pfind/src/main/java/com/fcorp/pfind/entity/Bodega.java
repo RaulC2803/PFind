@@ -23,7 +23,9 @@ public class Bodega extends Usuario implements Serializable {
     private String password;
     private int aforo;
     private String agencia_bancaria;
-
+    @Lob
+    @Column(name = "imagen")
+    private byte[] imagen;
 
 	@OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
@@ -130,5 +132,13 @@ public class Bodega extends Usuario implements Serializable {
 
     public void setReseña(List<Reseña> reseña) {
         this.reseña = reseña;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 }

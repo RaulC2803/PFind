@@ -87,13 +87,13 @@ public class BodegaRest {
 		 return servicioBodega.obtenerBPporCategoria(cid);
 	 }
 
-	 @GetMapping("/producto/buscarBPn/{nombre}")
-	 public List<Bodega_Producto> buscarBPporNombre(@PathVariable(value = "nombre") String nombre){
-		 return servicioBodega.obtenerBPporNombre(nombre);
+	 @GetMapping("/Bodega_Producto_Id/{id}")
+	 public Bodega_Producto buscarBPporId(@PathVariable(value = "id") Long id) throws Exception {
+		 return servicioBodega.obtenerBodegaProducto(id);
 	 }
-	 @GetMapping("/producto/buscarBPn")
-	 public List<Bodega_Producto> ListarBPs(){
-		 return servicioBodega.obtenerBPporNombre("");
+	 @GetMapping("/Bodega_Producto_Nombre/{nombre}")
+	 public List<Bodega_Producto> ListarBPs(@PathVariable(value = "nombre")String nombre){
+		 return servicioBodega.obtenerBPporNombre(nombre);
 	 }
 	 
 	 @GetMapping("/producto/Rango/p_min={pmin}/p_max={pmax}")

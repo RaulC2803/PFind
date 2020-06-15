@@ -16,6 +16,12 @@ public class Bodega_Producto {
     @JoinColumn(name = "Producto_Id")
     private Producto producto;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Listado listado;
+
+    @Column(name = "imagen", length = 100000)
+    private byte[] imagen;
+
     @ManyToOne()
     @JoinColumn(name = "Bodega_Id")
     private Bodega bodega;
@@ -59,4 +65,20 @@ public class Bodega_Producto {
 	public void setPrecio(Double precio) {
 		this.precio = precio;
 	}
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+
+    public Listado getListado() {
+        return listado;
+    }
+
+    public void setListado(Listado listado) {
+        this.listado = listado;
+    }
 }

@@ -7,8 +7,11 @@ import com.fcorp.pfind.entity.Cliente;
 import com.fcorp.pfind.entity.Listado;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/cliente")
@@ -21,8 +24,18 @@ public class ClienteRest {
         return servicioCliente.registrarCliente(cliente);
     }
 
+    @PostMapping("/upload_imagen")
+    public void CargarImagen(@RequestParam("imageFile") MultipartFile file) throws Exception {
+        servicioCliente.cargarImagen(file);
+    }
+
+    @GetMapping("/get_imagen/{id}")
+    public Cliente getImagen(@PathVariable(value = "id") Long id) throws Exception {
+        return servicioCliente.getCliente(id);
+    }
+
     @PostMapping("/actualizar/{id}")
-    public Cliente actualizarCliente(@RequestBody Cliente new_cliente, @PathVariable(value = "id") Long id) throws Exception{
+    public Cliente actualizarCliente(@RequestBody Cliente new_cliente, @PathVariable(value = "id") Long id, @RequestParam("imageFile")MultipartFile imageFile) throws Exception{
         Cliente c = servicioCliente.buscarCliente(id);
         if (new_cliente.getNombre() != null) c.setNombre(new_cliente.getNombre());
         if (new_cliente.getApellido() != null) c.setApellido(new_cliente.getApellido());
@@ -33,9 +46,9 @@ public class ClienteRest {
         return servicioCliente.registrarCliente(c);
     }
 
-    @PostMapping("/{id}/enlistar/{bp}")
+    @PostMapping("/agregar/{id}/{bp}")
     public Cliente enlistarProducto(@PathVariable(value = "id") Long id, @PathVariable(value = "bp") Long bp) throws Exception {
-        Cliente c = servicioCliente.buscarCliente(id);
+        Cliente c = servicioCliente.buscarCliente(id); 
         Bodega_Producto prod = servicioCliente.obtenerProductodeBodega(bp);
         servicioCliente.registrarLista(c,prod);
         return c;

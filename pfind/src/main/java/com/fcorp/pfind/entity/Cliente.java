@@ -1,8 +1,17 @@
 package com.fcorp.pfind.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
+import java.util.zip.Deflater;
 
 @Entity
 @Table(name = "Cliente")
@@ -20,8 +29,10 @@ public class Cliente implements Serializable {
     private String distrito;
     private Double precio_lista;
     private int cantidad;
+    @Column(name = "imagen",length = 100000)
+    private byte[] imagen;
 
-    public Cliente() {
+    public Cliente() throws IOException {
         super();
         this.precio_lista = 0.0;
         this.cantidad = 0;
@@ -119,5 +130,13 @@ public class Cliente implements Serializable {
 
     public void setReseñas(List<Reseña> reseñas) {
         this.reseñas = reseñas;
+    }
+
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
     }
 }

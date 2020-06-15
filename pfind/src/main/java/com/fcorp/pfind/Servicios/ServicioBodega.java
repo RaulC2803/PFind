@@ -50,6 +50,16 @@ public class ServicioBodega {
 			return bodega_productoRepositorio.save(BPinput);
 		}
 	}
+
+	public Bodega_Producto obtenerBodegaProducto(Long id) throws Exception {
+		Bodega_Producto bp = bodega_productoRepositorio.findById(id).get();
+		if(bp == null){
+			throw new Exception("No se pudo encontrar lo que busca");
+		}else{
+			return bp;
+		}
+	}
+
 	public List<Bodega_Producto> obtenerBPporCategoria(Long cid) {
 		return bodega_productoRepositorio.buscarPorCategoria(cid);
 	}
