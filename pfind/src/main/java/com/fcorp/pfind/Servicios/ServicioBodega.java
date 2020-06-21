@@ -8,15 +8,18 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fcorp.pfind.Repositorio.Bodega_Productorepositorio;
 import com.fcorp.pfind.Repositorio.Bodegarepositorio;
+import com.fcorp.pfind.Repositorio.Resenarepositorio;
 import com.fcorp.pfind.entity.Bodega;
 import com.fcorp.pfind.entity.Bodega_Producto;
 import com.fcorp.pfind.entity.Producto;
+import com.fcorp.pfind.entity.Resena;
 
 @Service
 public class ServicioBodega {
 	@Autowired
 	private Bodegarepositorio bodegaRepositorio;
-
+	@Autowired
+	private Resenarepositorio resenaRepositorio;
 	@Autowired
 	private Bodega_Productorepositorio bodega_productoRepositorio;
 
@@ -34,6 +37,17 @@ public class ServicioBodega {
 	public Bodega registrarBodega(Bodega bodega) {
 		return bodegaRepositorio.save(bodega);
 	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	public Resena registrarResena(Resena Rinput) throws Exception {
+		Resena r = null;
+		r = Rinput;
+		if (r == null){ throw new Exception("No se pudo registrar");}
+		else{
+			return resenaRepositorio.save(Rinput);
+		}
+	}
+	
 	
 	@Transactional(rollbackFor = Exception.class)
 	public Bodega actualizarBodega(Bodega bodega) throws Exception {

@@ -82,7 +82,7 @@ public class Cliente implements Serializable {
     List<Listado> listado;
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    List<Reseña> reseñas;
+    List<Resena> resenas;
 
     public Long getEdad() {
         return edad;
@@ -124,12 +124,12 @@ public class Cliente implements Serializable {
         this.apellido = apellido;
     }
 
-    public List<Reseña> getReseñas() {
-        return reseñas;
+    public List<Resena> getReseñas() {
+        return resenas;
     }
 
-    public void setReseñas(List<Reseña> reseñas) {
-        this.reseñas = reseñas;
+    public void setReseñas(List<Resena> resenas) {
+        this.resenas = resenas;
     }
 
     public byte[] getImagen() {

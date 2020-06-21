@@ -36,7 +36,7 @@ public class Bodega extends Usuario implements Serializable {
     private List<Bodega_Producto> productos;
 
     @OneToMany(mappedBy = "bodega", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Reseña> reseña;
+    private List<Resena> resena;
     
     public String getEmail() {
     	return email;
@@ -126,12 +126,12 @@ public class Bodega extends Usuario implements Serializable {
         this.productos = productos;
     }
 
-    public List<Reseña> getReseña() {
-        return reseña;
+    public List<Resena> getResena() {
+        return resena;
     }
 
-    public void setReseña(List<Reseña> reseña) {
-        this.reseña = reseña;
+    public void setResena(List<Resena> resena) {
+        this.resena = resena;
     }
 
     public byte[] getImagen() {

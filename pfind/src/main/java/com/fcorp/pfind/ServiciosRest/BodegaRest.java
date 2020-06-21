@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.fcorp.pfind.Servicios.ServicioBodega;
+import com.fcorp.pfind.Servicios.ServicioCliente;
 import com.fcorp.pfind.Servicios.ServicioProducto;
 import com.fcorp.pfind.entity.Bodega;
 import com.fcorp.pfind.entity.Bodega_Producto;
+import com.fcorp.pfind.entity.Cliente;
 import com.fcorp.pfind.entity.Producto;
+import com.fcorp.pfind.entity.Resena;
 
 
 @RestController
@@ -26,7 +29,8 @@ import com.fcorp.pfind.entity.Producto;
 public class BodegaRest {
 	@Autowired
 	private ServicioBodega servicioBodega;
-
+	@Autowired
+	private ServicioCliente servicioCliente;
 	@Autowired
 	private ServicioProducto servicioProducto;
 
@@ -40,7 +44,22 @@ public class BodegaRest {
 		}
 		return b;
 	}
-	
+	@PostMapping("/resena/registrar/{bid}/{cid}")
+	public Resena registrarResena(@RequestBody Resena re, @PathVariable(value = "bid") Long bid ,@PathVariable(value = "cid") Long cid ) {
+		try {
+			Bodega b = servicioBodega.obtenerBodega(bid);
+            Cliente c = servicioCliente.buscarCliente(cid);
+            Resena r = new Resena();
+            r.setBodega(b);
+            r.setCliente(c);
+            r.setCalificacion(re.getCalificacion());
+            r.setContenido(re.getContenido());
+           
+			return servicioBodega.registrarResena(r);
+		} catch (Exception e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "no se puede registrar reseña");
+		}
+	}
 	@PostMapping("/registrar")
 	public Bodega registrarBodega(@RequestBody Bodega bodega) {
 		Bodega b = null;
