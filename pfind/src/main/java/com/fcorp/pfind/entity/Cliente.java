@@ -80,7 +80,7 @@ public class Cliente implements Serializable {
 
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Listado> listado;
-
+    @JsonIgnore()
     @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     List<Resena> resenas;
 
