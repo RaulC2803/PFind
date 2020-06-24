@@ -31,7 +31,7 @@ public class ClienteRest {
 
     @GetMapping("/get_imagen/{id}")
     public Cliente getImagen(@PathVariable(value = "id") Long id) throws Exception {
-        return servicioCliente.getCliente(id);
+        return servicioCliente.getClienteImagen(id);
     }
 
     @PostMapping("/actualizar/{id}")

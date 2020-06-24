@@ -2,6 +2,7 @@ package com.fcorp.pfind.Servicios;
 
 import java.util.List;
 
+import com.fcorp.pfind.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fcorp.pfind.Repositorio.Bodega_Productorepositorio;
 import com.fcorp.pfind.Repositorio.Bodegarepositorio;
 import com.fcorp.pfind.Repositorio.Resenarepositorio;
-import com.fcorp.pfind.entity.Bodega;
-import com.fcorp.pfind.entity.Bodega_Producto;
-import com.fcorp.pfind.entity.Producto;
-import com.fcorp.pfind.entity.Resena;
+import org.springframework.web.multipart.MultipartFile;
+
+import static com.fcorp.pfind.Servicios.Decodificador.compressBytes;
+import static com.fcorp.pfind.Servicios.Decodificador.decompressBytes;
 
 @Service
 public class ServicioBodega {
@@ -95,5 +96,39 @@ public class ServicioBodega {
 
     public List<Bodega> obtenerBodegas(){
 		return bodegaRepositorio.findAll();
+	}
+
+	public void cargarImagen(MultipartFile file) throws Exception {
+		System.out.println("Original Image Byte Size - " + file.getBytes().length);
+		Bodega b = null;
+		int n = bodegaRepositorio.findAll().size();
+		b = bodegaRepositorio.findAll().get(n-1);
+		if(b == null){
+			System.out.println("No se encontró la Bodega");
+			throw new Exception("No se encontró la Bodega que busca");
+		}
+		else {
+			byte[] new_image = compressBytes(file);
+			b.setImagen(new_image);
+			System.out.println("Imagen de la Bodega Guardada");
+			bodegaRepositorio.save(b);
+		}
+	}
+
+	public Bodega getBodegaImagen(Long id) throws Exception {
+		Bodega b = null;
+		b = obtenerBodega(id);
+		b.setImagen(decompressBytes(b.getImagen()));
+		if(b == null){
+			throw new Exception("No se pudo encontrar la Bodega");
+		}else {
+			//System.out.println(b.getNombre());
+			return b;
+		}
+	}
+
+	public byte[] downloadImage(Long idBodega){
+		Bodega b = bodegaRepositorio.findById(idBodega).get();
+		return b.getImagen();
 	}
 }

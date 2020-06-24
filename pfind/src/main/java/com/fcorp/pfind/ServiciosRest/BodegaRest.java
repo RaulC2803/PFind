@@ -5,13 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import com.fcorp.pfind.Servicios.ServicioBodega;
@@ -72,6 +67,16 @@ public class BodegaRest {
 		return bodega;
 	}
 
+	@PostMapping("/upload_imagen")
+	public void CargarImagen(@RequestParam("imageFile") MultipartFile file) throws Exception {
+		servicioBodega.cargarImagen(file);
+	}
+
+	@GetMapping("/get_imagen/{id}")
+	public Bodega getImagen(@PathVariable(value = "id") Long id) throws Exception {
+		return servicioBodega.getBodegaImagen(id);
+	}
+
 	@PutMapping("/actualizar")
 	public Bodega actualizarBodega(@RequestBody Bodega bodega) {
 		Bodega b;
@@ -82,8 +87,7 @@ public class BodegaRest {
 		}
 		return b;
 	}	
-	
-	
+
 	 @PostMapping("/producto/registrar/{bID}/{pID}/{precio}")
 	    public Bodega_Producto registrarBodega_Producto(@PathVariable(value = "precio") Double precio,
 	                                                     @PathVariable(value = "bID") Long bid,
