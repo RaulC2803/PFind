@@ -21,7 +21,7 @@ public class Bodega_Producto {
 
     @Column(name = "imagen", length = 100000)
     private byte[] imagen;
-
+    @JsonIgnoreProperties("resena")
     @ManyToOne()
     @JoinColumn(name = "Bodega_Id")
     private Bodega bodega;
