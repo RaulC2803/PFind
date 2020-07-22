@@ -2,6 +2,10 @@
 
 _Proyecto de página web con Angular y Java_
 
+## Informe del Proyecto
+
+[Descargue el proyecto](https://github.com/RaulC2803/PFind/blob/organizar/TF%20DESARROLLO%20WEB.docx)
+
 ## Construido con 🛠️
 
 * Angular- Frontend
